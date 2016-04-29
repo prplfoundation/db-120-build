@@ -18,13 +18,14 @@ function dirclean {
 }
 
 if [ "$1" == "cc" ]; then
-  [ "$2" == "clean" ] && dirclean
+  [ "$2" == "clean" ] && clean
+
   cd $DIR
-  git -C build pull --no-ff || git clone https://git.openwrt.org/15.05/openwrt.git build
+  git -C build pull --ff-only || git clone https://git.openwrt.org/15.05/openwrt.git build
   rm build/feeds.conf
   echo "src-link boardcoop $DIR/cc-feed"|cat - cc.feeds.conf > /tmp/out && mv /tmp/out build/feeds.conf
   rm build/.config
-  cp .config build
+  cp cc.config build/.config
   cd build
   scripts/feeds update
   scripts/feeds install -a
@@ -33,7 +34,7 @@ if [ "$1" == "cc" ]; then
   cd $DIR
 elif [ "$1" == "dd" ]; then
  echo "crap"
-elif [ "$1" == "update-cc"] ; then
+elif [ "$1" == "update-cc" ] ; then
   cd $DIR/build
   scripts/diffconfig.sh >> $DIR/cc.config
   cd $DIR
