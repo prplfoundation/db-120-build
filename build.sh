@@ -33,7 +33,7 @@ if [ "$1" == "cc" ]; then
   make V=s
   cd $DIR
 elif [ "$1" == "dd" ]; then
- echo "crap"
+ echo "dd"
 elif [ "$1" == "update-cc" ] ; then
   cd $DIR/build
   scripts/diffconfig.sh >> $DIR/cc.config
