@@ -31,5 +31,5 @@ Convenience features
 ===
 You can also update your `cc.config` or `dd.config` from the build directory using
 `update-cc` or `update-dd`. This is useful when you change the selected packages in your
-build directory but what the save the config for later usage with the `cc` or `dd`
+build directory but want to save the config for later usage with the `cc` or `dd`
 commands.
