@@ -21,6 +21,7 @@ function run_build {
   VERSION=$1
   GIT_REPO=$2
   [ "$3" == "clean" ] && clean $VERSION.build
+  [ "$3" == "dirclean" ] && dirclean $VERSION.build
   cd $DIR
   git -C $VERSION.build pull --ff-only || git clone $GIT_REPO $VERSION.build
   rm $VERSION.build/feeds.conf
