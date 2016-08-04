@@ -27,10 +27,11 @@ function run_build {
   rm $VERSION.build/feeds.conf
   echo "src-link boardcoop $DIR/$VERSION-feed"|cat - $VERSION.feeds.conf > /tmp/out && mv /tmp/out $VERSION.build/feeds.conf
   rm $VERSION.build/.config
-  cp $VERSION.config $VERSION.build/.config
   cd $VERSION.build
   scripts/feeds update
   scripts/feeds install -a
+  make defconfig
+  cp -f ../$VERSION.config .config
   make defconfig
   make V=s
   cd $DIR
@@ -38,7 +39,7 @@ function run_build {
 
 function run_update {
   cd $DIR/$1.build
-  scripts/diffconfig.sh >> $DIR/$1.config
+  scripts/diffconfig.sh > $DIR/$1.config
   cd $DIR
 }
 
